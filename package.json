@@ -1,0 +1,17 @@
+{
+  "name": "vid-tube",
+  "version": "1.0.0",
+  "description": "Youtube backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node",
+    "Mongoose",
+    "Express"
+  ],
+  "author": "Gaurav Singh",
+  "license": "ISC"
+}
