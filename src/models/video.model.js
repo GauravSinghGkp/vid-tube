@@ -1,51 +1,39 @@
 import mongoose from "mongoose";
-
-const userSchema = new mongoose.Schema(
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
+const videoSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-      index: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    fullname: {
-      type: String,
-      required: true,
-      trim: true,
-      index: true,
-    },
-    avatar: {
+    videoFile: {
       type: String,
       required: true,
     },
-    coverImage: {
-      type: String,
-    },
-    password: {
+    thumbnail: {
       type: String,
       required: true,
     },
-    watchHistory: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Video",
-      },
-    ],
-    password: {
+    title: {
       type: String,
-      required: [true, "Password is required"],
+      required: true,
     },
-    refreshToken: {
+    description: {
       type: String,
+      required: true,
+    },
+    duration: {
+      type: Number,
+      required: true,
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    isPublished: {
+      type: Boolean,
+      default: true,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
   {
@@ -53,4 +41,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export const User = mongoose.model("User", userSchema);
+export const Video = mongoose.model("Video", videoSchema);

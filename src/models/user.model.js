@@ -1,39 +1,50 @@
 import mongoose from "mongoose";
-
-const videoSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
-    videoFile: {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      index: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    fullname: {
+      type: String,
+      required: true,
+      trim: true,
+      index: true,
+    },
+    avatar: {
       type: String,
       required: true,
     },
-    thumbnail: {
+    coverImage: {
+      type: String,
+    },
+    password: {
       type: String,
       required: true,
     },
-    title: {
+    watchHistory: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video",
+      },
+    ],
+    password: {
       type: String,
-      required: true,
+      required: [true, "Password is required"],
     },
-    description: {
+    refreshToken: {
       type: String,
-      required: true,
-    },
-    duration: {
-      type: Number,
-      required: true,
-    },
-    views: {
-      type: Number,
-      default: 0,
-    },
-    isPublished: {
-      type: Boolean,
-      default: true,
-    },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
     },
   },
   {
@@ -41,4 +52,4 @@ const videoSchema = new mongoose.Schema(
   }
 );
 
-export const Video = mongoose.model("Video", videoSchema);
+export const User = mongoose.model("User", userSchema);
